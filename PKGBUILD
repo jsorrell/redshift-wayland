@@ -19,9 +19,9 @@ optdepends=('python-gobject: for redshift-gtk'
             'orbital-git: supporting wayland environment')
 makedepends=('intltool' 'python')
 source=(redshift::"git+https://github.com/jonls/redshift.git"
-		'wayland-support.patch')
+        'wayland-support.patch')
 sha256sums=('SKIP'
-			'875dd9be0d79236015257c90db68209b4a29111c98634cdf155e37f64344ad69')
+            '875dd9be0d79236015257c90db68209b4a29111c98634cdf155e37f64344ad69')
 
 _configure_options=(
 	--prefix="/usr"
@@ -34,14 +34,14 @@ _configure_options=(
 )
 			
 prepare() {
-	cd "${srcdir}/redshift"
+    cd "${srcdir}/redshift"
     git checkout "release-${pkgver}"
 	
-	msg "Patch to support wayland"
+    msg "Patch to support wayland"
     patch -Np1 -i "${srcdir}/wayland-support.patch"
     
     msg "Bootstrapping"
-	./bootstrap
+    ./bootstrap
 }
 
 build() {
@@ -49,9 +49,9 @@ build() {
 
     msg "Run ./configure"
     ./configure \
-		"${_configure_options[@]}"
+    "${_configure_options[@]}"
         
-	msg "Run make"
+    msg "Run make"
     make
 }
 
